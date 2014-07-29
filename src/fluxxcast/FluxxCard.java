@@ -299,7 +299,62 @@ public class FluxxCard
         
         return new FluxxCard(name, description, type);
     }
+
+    /**
+     * 
+     * @param goal:
+     * @param player:
+     */
+    public boolean meetsGoalConditions(Card goal, FluxxPlayer player, boolean inflation)
+    {
+        return meetsGoalConditions(new FluxxCard(goal), player, boolean inflation);
+    }
     
+    public boolean meetsGoalConditions(FluxxCard goal, FluxxPlayer player, boolean inflation)
+    {
+        // Double check to see if goal is actually a goal.
+        if (goal.type != CardType.GOAL)
+        {
+            return false;
+        }
+        
+        switch (goal.type)
+        {
+          case TEN_CARDS:
+          case FIVE_KEEPERS:
+          case ALL_NEED_LOVE:
+          case APPLIANCES:
+          case BAKED_GOODS:
+          case BED_TIME:
+          case BRAIN_NO_TV:
+          case CHOCO_COOKIES:
+          case CHOCO_MILK:
+          case DEATH_CHOCO:
+          case DREAMLAND:
+          case HEARTS_MINDS:
+          case HIPPY:
+          case MILK_COOKIES:
+          case NIGHT_DAY:
+          case PEACE_NO_WAR:
+          case ROCKET_SCIENCE:
+          case ROCKET_MOON:
+          case SQUISH_CHOCO:
+          case TIME_IS_MONEY:
+          case TOAST:
+          case WAR_DEATH:
+          case WINNING_LOTTERY:
+          case MIND_EYE:
+          case DOUGH:
+          case ALL_IS_CERTAIN:
+          case INTER_SPACECRAFT:
+          case STAR_GAZING:
+          case PARTY_SNACKS:
+              break;
+        }
+        
+        return false;
+    }
+
     public String getTypeDescript(CardType type)
     {
         switch (type)
