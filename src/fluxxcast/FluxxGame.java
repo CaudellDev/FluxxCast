@@ -76,6 +76,8 @@ public class FluxxGame
     
     public boolean isWinner()
     {
+        FluxxPlayer possWinner = null;
+        
         if (goal == Card.TEN_CARDS || goal2 == Card.TEN_CARDS)
         {
             // Get hand sizes.
@@ -85,6 +87,11 @@ public class FluxxGame
         {
             // Get table sizes.
         }
+        
+        // Get player table.
+        // Just one at a time, or all at once?
+        
+        
         
         return false;
     }
