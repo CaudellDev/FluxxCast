@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package fluxxcast;
 
 import java.util.LinkedList;
@@ -66,30 +60,20 @@ public class FluxxGame
             }
         }
         
+        // Put players into the class array.
         for (int i = 0; i < playerNames.length; i++)
         {
             players.add(temp[i]);
         }
         
+        // Poll from the front of the queue, for the first player.
+        // Will change this later.
         currPlayer = players.poll();
     }
     
     public boolean isWinner()
     {
         FluxxPlayer possWinner = null;
-        
-        if (goal == Card.TEN_CARDS || goal2 == Card.TEN_CARDS)
-        {
-            // Get hand sizes.
-        }
-        
-        if (goal == Card.FIVE_KEEPERS || goal2 == Card.FIVE_KEEPERS)
-        {
-            // Get table sizes.
-        }
-        
-        // Get player table.
-        // Just one at a time, or all at once?
         
         
         
@@ -108,6 +92,7 @@ public class FluxxGame
         Card[] drawed = new Card[drawCount + inflation];
         for (int i = 0; i < (drawCount + inflation); i++)
         {
+            // Needs to take creeper into account.
             drawed[i] = deck.draw();
         }
         
@@ -120,10 +105,12 @@ public class FluxxGame
             
             // Do something else?
         }
-        
-        
     }
     
+    /**
+     * 
+     * @param card 
+     */
     public void resolveCard(Card card)
     {
         resolveCard(new FluxxCard(card));
@@ -165,7 +152,7 @@ public class FluxxGame
         switch (card)
         {
             case JACKPOT:
-                for (int i = 3; i > 0; i--)
+                for (int i = 0; i < 3; i++)
                 {
                     currPlayer.draw(deck.draw());
                 }
@@ -195,7 +182,12 @@ public class FluxxGame
         }
     }
     
-    private void doCreeper(Card card) {}
+    private void doCreeper(Card card)
+    {
+        // Put on table.
+        // Draw another card, if it was drawn.
+    }
+    
     private void doGoal(Card card) {}
     private void doKeeper(Card card) {}
     private void doNewRule(Card card) {}

@@ -299,18 +299,34 @@ public class FluxxCard
         
         return new FluxxCard(name, description, type);
     }
+    
+    public CardType getEnumType(Card enumCard)
+    {
+        return getCard(enumCard).getCardType();
+    }
+    
+    
 
     /**
      * 
      * @param goal:
      * @param player:
+     * @param inflation
+     * @return 
      */
-    public boolean meetsGoalConditions(Card goal, FluxxPlayer player, boolean inflation)
+    public boolean meetsGoalConditions(Card goal, FluxxPlayer player, int inflation)
     {
-        return meetsGoalConditions(new FluxxCard(goal), player, boolean inflation);
+        return meetsGoalConditions(getCard(enumCard), player, inflation);
     }
     
-    public boolean meetsGoalConditions(FluxxCard goal, FluxxPlayer player, boolean inflation)
+    /**
+     * 
+     * @param goal
+     * @param player
+     * @param inflation
+     * @return 
+     */
+    public boolean meetsGoalConditions(FluxxCard goal, FluxxPlayer player, int inflation)
     {
         // Double check to see if goal is actually a goal.
         if (goal.type != CardType.GOAL)
@@ -318,7 +334,7 @@ public class FluxxCard
             return false;
         }
         
-        switch (goal.type)
+        switch (goal.getEnumCard())
         {
           case TEN_CARDS:
           case FIVE_KEEPERS:
@@ -354,7 +370,7 @@ public class FluxxCard
         
         return false;
     }
-
+    
     public String getTypeDescript(CardType type)
     {
         switch (type)
