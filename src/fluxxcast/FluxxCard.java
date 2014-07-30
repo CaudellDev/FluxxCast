@@ -1,5 +1,7 @@
 package fluxxcast;
 
+import java.util.LinkedList;
+
 enum CardType
 {
     NO_CARD,
@@ -305,8 +307,6 @@ public class FluxxCard
         return getCard(enumCard).getCardType();
     }
     
-    
-
     /**
      * 
      * @param goal:
@@ -337,14 +337,40 @@ public class FluxxCard
         switch (goal.getEnumCard())
         {
           case TEN_CARDS:
+              return player.getHand().size() >= (10 + inflation);
           case FIVE_KEEPERS:
+              return player.getKeepers().size() >= (5 + inflation);
           case ALL_NEED_LOVE:
+              // How am I going to do this??
           case APPLIANCES:
           case BAKED_GOODS:
           case BED_TIME:
           case BRAIN_NO_TV:
           case CHOCO_COOKIES:
           case CHOCO_MILK:
+              boolean chocolate = false;
+              boolean milk = false;
+              
+              LinkedList<Card> keepers = player.getKeepers();
+              
+              for (Card card : keepers)
+              {
+                  if (card == Card.CHOCOLATE)
+                  {
+                      chocolate = true;
+                  }
+                  
+                  if (card == Card.MILK)
+                  {
+                      milk = true;
+                  }
+                  
+                  // If both are true, no need to check the other cards.
+                  if (chocolate && milk)
+                  {
+                      return true;
+                  }
+              }
           case DEATH_CHOCO:
           case DREAMLAND:
           case HEARTS_MINDS:
